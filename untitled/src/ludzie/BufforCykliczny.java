@@ -2,7 +2,7 @@ package ludzie;
 import java.util.Arrays;
 
 public class BufforCykliczny {
-    private Osoba[] array = new Osoba[4];
+    private Ulamek[] array = new Ulamek[4];
     private int cnt = 0;
 
 
@@ -23,16 +23,16 @@ public class BufforCykliczny {
         }
     }
 
-    public void dodaj(Osoba człowiek){
+    public void dodaj(Ulamek u){
         if (cnt >= array.length){
             powiększ();
         }
-        array[cnt] = człowiek;
+        array[cnt] = u;
         cnt ++;
     }
 
-    public Osoba pobierz(){
-        Osoba wynik = array[0];
+    public Ulamek pobierz(){
+        Ulamek wynik = array[0];
         przesuńWLewo();
         cnt--;
         if(cnt <= array.length / 4){
@@ -42,9 +42,9 @@ public class BufforCykliczny {
     }
 
     public void wypisz() {
-        System.out.println("Lista osob:");
+        System.out.println("Ułamki: ");
         for (int i = cnt - 1 ; i >= 0 ; --i){
-            System.out.println(array[i].przedstaw_sie());
+            System.out.println(array[i].toString());
         }
     }
 }

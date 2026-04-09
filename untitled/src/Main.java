@@ -4,34 +4,6 @@ public class Main {
     public static void main(String[] args) {
         BufforCykliczny bufor = new BufforCykliczny();
 
-        Osoba[] dane = {
-            new Osoba("Jan", "Kowalski"),
-            new Student("Anna", "Polak", "345801"),
-            new Agent("James", "Bond", "Bond"),
-            new Osoba("Marek", "Aureliusz"),
-            new Student("Kasia", "Kasia", "329462")
-        };
-
-        for (Osoba nowa_osoba : dane) {
-            bufor.dodaj(nowa_osoba);
-        }
-        for (Osoba nowa_osoba : dane) {
-            bufor.dodaj(nowa_osoba);
-        }
-        for (Osoba nowa_osoba : dane) {
-            bufor.dodaj(nowa_osoba);
-        }
-        System.out.println("Pobieranie:");
-        for (int i = 0 ; i < 13 ; ++i){
-            Osoba pobranyCzłowiek = bufor.pobierz();
-            System.out.println(pobranyCzłowiek.przedstaw_sie());
-        }
-        for (Osoba nowa_osoba : dane) {
-            bufor.dodaj(nowa_osoba);
-        }
-
-        bufor.wypisz();
-
         // Ulamki
         Ulamek u1 = new Ulamek(1, 2);
         Ulamek u2 = new Ulamek(2, 3);
@@ -44,5 +16,23 @@ public class Main {
 
         Ulamek iloraz = u1.divide(u2);
         System.out.print("u1 / u2 = "); iloraz.wypisz();
+
+
+        for (int i = 0; i < 60; i++) {
+            int licznik = i * i + 7;
+            int mianownik = i * 3 + 11;
+            bufor.dodaj(new Ulamek(licznik, mianownik));
+        }
+
+        bufor.wypisz();
+
+        for (int i = 0; i < 50; i++) {
+            bufor.pobierz();
+        }
+
+        bufor.dodaj(new Ulamek(999, 1));
+        bufor.dodaj(new Ulamek(1000, 7));
+
+        bufor.wypisz();
     }
 }

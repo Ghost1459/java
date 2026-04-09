@@ -1,3 +1,5 @@
+package ludzie;
+
 public class Ulamek {
     private int licznik;
     private int mianownik;
