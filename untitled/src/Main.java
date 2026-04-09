@@ -2,8 +2,7 @@ import ludzie.*;
 
 public class Main {
     public static void main(String[] args) {
-        Osoba[] array = new Osoba[4];
-        int counter = 0;
+        BufforCykliczny bufor = new BufforCykliczny();
 
         Osoba[] dane = {
             new Osoba("Jan", "Kowalski"),
@@ -14,16 +13,24 @@ public class Main {
         };
 
         for (Osoba nowa_osoba : dane) {
-            if (counter >= array.length) {
-                array = BufforCykliczny.expand(array);
-            }
-
-            array[counter] = nowa_osoba;
-            counter++;
+            bufor.dodaj(nowa_osoba);
+        }
+        for (Osoba nowa_osoba : dane) {
+            bufor.dodaj(nowa_osoba);
+        }
+        for (Osoba nowa_osoba : dane) {
+            bufor.dodaj(nowa_osoba);
+        }
+        System.out.println("Pobieranie:");
+        for (int i = 0 ; i < 13 ; ++i){
+            Osoba pobranyCzłowiek = bufor.pobierz();
+            System.out.println(pobranyCzłowiek.przedstaw_sie());
+        }
+        for (Osoba nowa_osoba : dane) {
+            bufor.dodaj(nowa_osoba);
         }
 
-        System.out.println("\n Lista osob:");
-        BufforCykliczny.wypisz(array);
+        bufor.wypisz();
 
         // Ulamki
         Ulamek u1 = new Ulamek(1, 2);

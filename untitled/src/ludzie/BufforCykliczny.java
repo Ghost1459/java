@@ -2,20 +2,49 @@ package ludzie;
 import java.util.Arrays;
 
 public class BufforCykliczny {
-    public static Osoba[] expand(Osoba[] array) {
+    private Osoba[] array = new Osoba[4];
+    private int cnt = 0;
+
+
+    private void powiększ() {
         int new_size = array.length * 2;
-        return Arrays.copyOf(array, new_size);
+        array = Arrays.copyOf(array, new_size);
     }
 
-    public static Osoba[] minimize(Osoba[] array) {
+    private void zmniejsz() {
         int new_size = array.length / 2;
         if (new_size < 1) new_size = 1;
-        return Arrays.copyOf(array, new_size);
+        array = Arrays.copyOf(array, new_size);
     }
 
-    static public void wypisz(Osoba[] array) {
-        for (Osoba osoba : array) {
-            if (osoba != null) { System.out.print(osoba); }
+    private void przesuńWLewo(){
+        for (int i = 1 ; i < cnt ; ++i){
+            array[i - 1] = array[i];
+        }
+    }
+
+    public void dodaj(Osoba człowiek){
+        if (cnt >= array.length){
+            powiększ();
+        }
+        array[cnt] = człowiek;
+        cnt ++;
+    }
+
+    public Osoba pobierz(){
+        Osoba wynik = array[0];
+        przesuńWLewo();
+        cnt--;
+        if(cnt <= array.length / 4){
+            zmniejsz();
+        }
+        return wynik;
+    }
+
+    public void wypisz() {
+        System.out.println("Lista osob:");
+        for (int i = cnt - 1 ; i >= 0 ; --i){
+            System.out.println(array[i].przedstaw_sie());
         }
     }
 }
